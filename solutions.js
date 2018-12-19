@@ -91,14 +91,14 @@ Problem [005]: Smallest multiple
 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
 What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
  */
-const smallestMultiple = () => {
-  let num = 20;
+const smallestMultiple = maxMultiple => {
+  let num = maxMultiple;
   let smallestMultipleFound = false;
 
   while (!smallestMultipleFound) {
     let divisibleByAll = true;
 
-    for (let i = 3; i <= 20; i++) {
+    for (let i = 3; i <= maxMultiple; i++) {
       if (num % i !== 0) {
         divisibleByAll = false;
         break;
@@ -106,14 +106,14 @@ const smallestMultiple = () => {
     }
 
     if (divisibleByAll) smallestMultipleFound = true;
-    else num += 20;
+    else num += maxMultiple;
   }
 
   return num;
 };
 
 console.time('Problem 5');
-console.log(smallestMultiple());
+console.log(smallestMultiple(20));
 console.timeEnd('Problem 5');
 
 /*
