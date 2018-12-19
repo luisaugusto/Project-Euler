@@ -142,3 +142,35 @@ const sumSquareDiff = max => {
 console.time('Problem 6');
 console.log(sumSquareDiff(100));
 console.timeEnd('Problem 6');
+
+/*
+Problem [007]: 10001st prime
+By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
+What is the 10 001st prime number?
+ */
+const findPrime = num => {
+  const prime = {
+    index: 0,
+    number: 1
+  };
+
+  while (prime.index < num) {
+    prime.number++;
+    let isPrime = true;
+
+    for (let x = 2; x < prime.number; x++) {
+      if (prime.number % x === 0) {
+        isPrime = false;
+        break;
+      }
+    }
+
+    if (isPrime) prime.index++;
+  }
+
+  return prime.number;
+};
+
+console.time('Problem 7');
+console.log(findPrime(10001));
+console.timeEnd('Problem 7');
