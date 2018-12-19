@@ -4,7 +4,10 @@ If we list all the natural numbers below 10 that are multiples of 3 or 5, we get
 Find the sum of all the multiples of 3 or 5 below 1000.
 */
 const multiplesOf3Or5 = range => [...Array(range).keys()].filter(num => num % 3 === 0 || num % 5 === 0).reduce((acc, num) => acc + num, 0);
+
+console.time('Problem 1');
 console.log(multiplesOf3Or5(1000));
+console.timeEnd('Problem 1');
 
 /*
 Problem [0002]: Even Fibonacci numbers
@@ -28,36 +31,84 @@ const evenFibonacci = max => {
 
   return evenSum;
 };
+
+console.time('Problem 2');
 console.log(evenFibonacci(4000000));
+console.timeEnd('Problem 2');
 
 /*
 Problem [0003]: Largest prime factor
 The prime factors of 13195 are 5, 7, 13 and 29.
 What is the largest prime factor of the number 600851475143?
  */
-const isPrime = num => {
-  let prime = true;
-  for (let i = 2; i < num; i++) {
-    if (num % i === 0) {
-      prime = false;
-      break;
+const largestPrimeFactor = (num, count = 2) => {
+  while (count < num) {
+    while (num % count === 0) {
+      num = num / count;
     }
-  }
-  return prime;
-};
 
-const largestPrimeFactor = num => {
-  let largestFactor = num;
-  let maxFactor = Math.floor(num / (num % 2 === 0 ? 2 : 3));
-  maxFactor -= maxFactor % 2 === 0 && maxFactor > 2 ? 1 : 0;
-
-  for (let i = maxFactor; i > 1; i -= 2) {
-    if (num % i === 0 && isPrime(i)) {
-      largestFactor = i;
-      break;
-    }
+    count++;
   }
 
-  return largestFactor;
+  return num;
 };
+
+console.time('Problem 3');
 console.log(largestPrimeFactor(600851475143));
+console.timeEnd('Problem 3');
+
+/*
+Problem [0004]: Largest palindrome product
+A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
+Find the largest palindrome made from the product of two 3-digit numbers.
+ */
+const largestPalindrome = () => {
+  let palindrome = 0;
+
+  for (let x = 100; x < 1000; x++) {
+    for (let y = 100; y < 1000; y++) {
+      const product = x * y;
+      const reverseProduct = product.toString().split('').reverse().join('');
+
+      if (product === Number(reverseProduct) && product > palindrome) {
+        palindrome = product;
+      }
+    }
+  }
+
+  return palindrome;
+};
+
+console.time('Problem 4');
+console.log(largestPalindrome());
+console.timeEnd('Problem 4');
+
+/*
+Problem [0005]: Smallest multiple
+2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
+What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
+ */
+const smallestMultiple = () => {
+  let num = 1;
+  let smallestMultipleFound = false;
+
+  while (!smallestMultipleFound) {
+    let divisibleByAll = true;
+
+    for (let i = 2; i <= 20; i++) {
+      if (num % i !== 0) {
+        divisibleByAll = false;
+        break;
+      }
+    }
+
+    if (divisibleByAll) smallestMultipleFound = true;
+    else num++;
+  }
+
+  return num;
+};
+
+console.time('Problem 5');
+console.log(smallestMultiple());
+console.timeEnd('Problem 5');
