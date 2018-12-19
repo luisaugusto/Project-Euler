@@ -133,10 +133,10 @@ const sumSquareDiff = max => {
 
   for (let i = 1; i <= max; i++) {
     sum += i;
-    squareSum += Math.pow(i, 2);
+    squareSum += i * i;
   }
 
-  return Math.pow(sum, 2) - squareSum;
+  return sum * sum - squareSum;
 };
 
 console.time('Problem 6');
