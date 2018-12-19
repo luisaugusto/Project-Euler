@@ -89,13 +89,13 @@ Problem [0005]: Smallest multiple
 What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
  */
 const smallestMultiple = () => {
-  let num = 1;
+  let num = 20;
   let smallestMultipleFound = false;
 
   while (!smallestMultipleFound) {
     let divisibleByAll = true;
 
-    for (let i = 2; i <= 20; i++) {
+    for (let i = 3; i <= 20; i++) {
       if (num % i !== 0) {
         divisibleByAll = false;
         break;
@@ -103,7 +103,7 @@ const smallestMultiple = () => {
     }
 
     if (divisibleByAll) smallestMultipleFound = true;
-    else num++;
+    else num += 2;
   }
 
   return num;
