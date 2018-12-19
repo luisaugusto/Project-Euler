@@ -65,13 +65,16 @@ Find the largest palindrome made from the product of two 3-digit numbers.
 const largestPalindrome = () => {
   let palindrome = 0;
 
-  for (let x = 100; x < 1000; x++) {
-    for (let y = 100; y < 1000; y++) {
+  for (let x = 999; x > 99; x--) {
+    for (let y = 999; y > 99; y--) {
       const product = x * y;
+      if (product < palindrome) break;
+
       const reverseProduct = product.toString().split('').reverse().join('');
 
-      if (product === Number(reverseProduct) && product > palindrome) {
+      if (product === Number(reverseProduct)) {
         palindrome = product;
+        break;
       }
     }
   }
@@ -103,7 +106,7 @@ const smallestMultiple = () => {
     }
 
     if (divisibleByAll) smallestMultipleFound = true;
-    else num += 2;
+    else num += 20;
   }
 
   return num;
