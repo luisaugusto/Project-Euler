@@ -15,7 +15,7 @@ const countLetters = number => {
     word += teens < 20 ? ones[teens] : tens[ten] + ones[one];
 
     return word.length;
-}
+};
 
 const countLettersRange = max => [...Array(max)].reduce((sum, _, index) => countLetters(index + 1) + sum, 0);
 
