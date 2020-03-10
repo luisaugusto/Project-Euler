@@ -105,7 +105,7 @@ const subNumber = (number, digits) => number.toLocaleString('fullwide', { useGro
 
 console.time('Problem 13');
 
-const numbers = numberString.split('\n').map(n => Number(n));
+const numbers = numberString.split('\n').map(Number);
 console.log(subNumber(sum(numbers), 10));
 
 console.timeEnd('Problem 13');
