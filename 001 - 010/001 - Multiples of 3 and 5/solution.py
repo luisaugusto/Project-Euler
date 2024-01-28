@@ -1,10 +1,16 @@
-import time
+from timer import Timer
 
-start = time.time()
+timer = Timer()
+limit = 1000
 
-count = 0
-for i in range(1000):
-    count += i if i % 3 == 0 or i % 5 == 0 else 0
 
-print(count)
-print((time.time() - start) * 1000, "ms")
+def sum_of_multiples(multiples):
+    val = 0
+    for num in range(limit)[::multiples]:
+        val += num
+
+    return val
+
+
+print(sum_of_multiples(3) + sum_of_multiples(5) - sum_of_multiples(15))
+timer.end()
