@@ -33,10 +33,9 @@ for year in range(100):
     current_year = 1901 + year
     for month in range(12):
         num_days = get_feb_days(current_year) if month == 1 else months_to_days[month]
-        for day in range(num_days):
-            day_count += 1
-            if day == 0 and (day_count + 1) % 7 == 0:
-                num_sundays += 1
+        if day_count % 7 == 0:
+            num_sundays += 1
+        day_count += num_days
 
 print(num_sundays)
 timer.end()
